@@ -25,5 +25,5 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
     compile "org.jetbrains.anko:anko:0.10.1"
-    compile 'com.github.kittinunf.fuel:fuel-android:1.10.0'
+    compile 'com.github.kittinunf.fuse:fuse:0.2'
 }

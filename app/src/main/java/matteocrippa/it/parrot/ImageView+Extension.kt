@@ -3,9 +3,12 @@ package matteocrippa.it.parrot
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.widget.ImageView
-import com.github.kittinunf.fuel.Fuel
+import com.github.kittinunf.fuse.core.Config
+import com.github.kittinunf.fuse.core.Fuse
+import com.github.kittinunf.fuse.core.fetch.get
 import org.jetbrains.anko.imageBitmap
 import org.jetbrains.anko.imageResource
+import java.net.URL
 
 /**
  * Created by Matteo Crippa on 23/12/2017.
@@ -24,23 +27,26 @@ fun ImageView.loadImage(url: String?, placeholder: Bitmap? = null, placeholderRe
         return
     }
 
-    // TODO: add caching
-    when (caching) {
+    // setup caching
+    val config = when (caching) {
         Parrot.Caching.DiskOnly -> {
+            Config.DEFAULT_NAME
         }
         Parrot.Caching.NetOnly -> {
+            Config.DEFAULT_NAME
         }
         Parrot.Caching.DiskThenNet -> {
+            Config.DEFAULT_NAME
         }
     }
 
     // make remote call using fuel
-    Fuel.get(url).response { _, _, data ->
+    Fuse.bytesCache.get(URL(url), configName = config) { data ->
 
         data.fold(success = { bytes ->
             // convert bytearray to bitmap
             val data = BitmapFactory.decodeByteArray(bytes, 0, bytes.count())
-            // TODO: store on disk the resource
+
             // if we have our manipulate callback
             if (manipulate != null) {
                 // use the manipulated data
