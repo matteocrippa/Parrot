@@ -14,11 +14,17 @@ maven { url 'https://jitpack.io' }
 then add this
 
 ```
-compile 'com.github.matteocrippa:Parrot:0.0.1'
+compile 'com.github.matteocrippa:Parrot:0.0.2'
 ```
 
 # Usage
-`Parrot` provides you a simple function to tame all your needs:
+`Parrot` needs to be init once, passing the app context:
+
+```kotlin
+Parrot(context)
+```
+
+then provides you a simple function to tame all your needs:
 
 `ImageView.loadImage`
 
@@ -34,9 +40,8 @@ This function has the following parameters:
 ## Caching
 `Parrot` provide an easy way to handle images caching:
 
-- DiskOnly, download once, and then always read from disk
 - NetOnly, _default_ option, force always reloading from net
-- DiskThenNet, download once, and then refresh from net
+- NetThenDisk, download once and use local version
 
 ## Examples
 
