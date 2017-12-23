@@ -23,13 +23,20 @@ compile 'com.github.matteocrippa:parrot:0.0.1'
 `ImageView.loadImage`
 
 This function has the following parameters:
-- url: String?
-- placeholder: Bitmap? = null
-- placeholderResource: Int? = null
-- caching: Parrot.Caching = Parrot.Caching.NetOnly
-- manipulate: ((data: Bitmap?) -> Bitmap?)? = null, 
-- onComplete: ((completed: Boolean) -> Unit)? = null)
+- url, _optional_ string with current remote image url
+- placeholder, _optional_ bitmap placeholder
+- placeholderResource, _optional_ resource placeholder
+- caching, you can set your favorite caching system, see below
+- manipulate, _optional_ callback returns the image before setting to your imageview, here you can tweak the image
+- onComplete, _optional_ callback returns when the image has been applied to the imageview
 
+
+## Caching
+`Parrot` provide an easy way to handle images caching:
+
+- DiskOnly, download once, and then always read from disk
+- NetOnly, _default_ option, force always reloading from net
+- DiskThenNet, download once, and then refresh from net
 
 #### Credits
 
