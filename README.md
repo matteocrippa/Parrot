@@ -38,6 +38,26 @@ This function has the following parameters:
 - NetOnly, _default_ option, force always reloading from net
 - DiskThenNet, download once, and then refresh from net
 
+## Examples
+
+Simple usage
+```kotlin
+
+imageView.loadImage("http://the-most-awesome-image.png")
+```
+
+Callback usage
+```kotlin
+imageView.loadImage("http://the-most-awesome-image.png", 
+    manipulate = { bitmap ->
+        // alter bitmap
+        bitmap
+    }, onComplete = { completed ->
+        // do something
+    }                                        
+
+```
+
 #### Credits
 
 Icon is taken by free emojii set by [Vincent Le Moign](https://dribbble.com/webalys)
