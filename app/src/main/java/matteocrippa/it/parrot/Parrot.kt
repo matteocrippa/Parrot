@@ -8,7 +8,7 @@ import com.github.kittinunf.fuse.core.Fuse
  */
 class Parrot(private val context: Context) {
     enum class Caching {
-        DiskOnly, NetOnly, DiskThenNet
+        NetOnly, NetThenDisk
     }
 
     init {

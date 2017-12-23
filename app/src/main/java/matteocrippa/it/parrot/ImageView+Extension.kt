@@ -14,7 +14,7 @@ import java.net.URL
  * Created by Matteo Crippa on 23/12/2017.
  */
 
-fun ImageView.loadImage(url: String?, placeholder: Bitmap? = null, placeholderResource: Int? = null, caching: Parrot.Caching = Parrot.Caching.NetOnly, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onComplete: ((completed: Boolean) -> Unit)? = null) {
+fun ImageView.loadImage(url: String?, placeholder: Bitmap? = null, placeholderResource: Int? = null, caching: Parrot.Caching = Parrot.Caching.NetThenDisk, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onComplete: ((completed: Boolean) -> Unit)? = null) {
 
     // if provided set bitmap placeholder
     if (placeholder != null) this.imageBitmap = placeholder
@@ -28,20 +28,15 @@ fun ImageView.loadImage(url: String?, placeholder: Bitmap? = null, placeholderRe
     }
 
     // setup caching
-    val config = when (caching) {
-        Parrot.Caching.DiskOnly -> {
-            Config.DEFAULT_NAME
-        }
+    when (caching) {
         Parrot.Caching.NetOnly -> {
-            Config.DEFAULT_NAME
+            Fuse.bytesCache.remove(url)
         }
-        Parrot.Caching.DiskThenNet -> {
-            Config.DEFAULT_NAME
-        }
+        else -> {}
     }
 
     // make remote call using fuel
-    Fuse.bytesCache.get(URL(url), configName = config) { data ->
+    Fuse.bytesCache.get(URL(url)) { data ->
 
         data.fold(success = { bytes ->
             // convert bytearray to bitmap
