@@ -14,26 +14,40 @@ import java.net.URL
  * Created by Matteo Crippa on 23/12/2017.
  */
 
-fun ImageView.load(url: String?, placeholder: Any? = null, caching: Parrot.Caching = Parrot.Caching.NetThenDisk, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onComplete: ((completed: Boolean) -> Unit)? = null) {
+fun ImageView.load(url: String?, placeholder: Any? = null, caching: Parrot.Caching = Parrot.Caching.NetThenDisk, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onPlaceholder: ((completed: Boolean) -> Unit)? = null, onComplete: ((completed: Boolean) -> Unit)? = null) {
 
     if(placeholder == null) {
         this.loadImage(url, caching = caching, manipulate = manipulate, onComplete = onComplete)
     } else {
         if(placeholder is Int) {
-            this.loadImage(url, placeholderResource = placeholder, caching = caching, manipulate = manipulate, onComplete = onComplete)
+            this.loadImage(url, placeholderResource = placeholder, caching = caching, manipulate = manipulate, onPlaceholder = onPlaceholder, onComplete = onComplete)
         } else if (placeholder is Bitmap) {
-            this.loadImage(url, placeholder = placeholder, caching = caching, manipulate = manipulate, onComplete = onComplete)
+            this.loadImage(url, placeholder = placeholder, caching = caching, manipulate = manipulate, onPlaceholder = onPlaceholder, onComplete = onComplete)
         }
     }
 }
 
-private fun ImageView.loadImage(url: String?, placeholder: Bitmap? = null, placeholderResource: Int? = null, caching: Parrot.Caching = Parrot.Caching.NetThenDisk, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onComplete: ((completed: Boolean) -> Unit)? = null) {
+private fun ImageView.loadImage(url: String?, placeholder: Bitmap? = null, placeholderResource: Int? = null, caching: Parrot.Caching = Parrot.Caching.NetThenDisk, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onPlaceholder: ((completed: Boolean) -> Unit)? = null, onComplete: ((completed: Boolean) -> Unit)? = null) {
+
+    // placehoder set flag
+    var placeholderSet = false
 
     // if provided set bitmap placeholder
-    if (placeholder != null) this.imageBitmap = placeholder
+    if (placeholder != null) {
+        this.imageBitmap = placeholder
+        placeholderSet = true
+    }
 
     // if provided set resource placeholder
-    if (placeholderResource != null) this.imageResource = placeholderResource
+    if (placeholderResource != null) {
+        this.imageResource = placeholderResource
+        placeholderSet = true
+    }
+
+    // placeholder callback
+    if(onPlaceholder != null) {
+        onPlaceholder(placeholderSet)
+    }
 
     // if url is empty stop here
     if (url == null) {
