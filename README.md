@@ -29,19 +29,19 @@ then provides you a simple function to tame all your needs:
 `ImageView.loadImage`
 
 This function has the following parameters:
-- url, _optional_ string with current remote image url
-- placeholder, _optional_ bitmap placeholder
-- placeholderResource, _optional_ resource placeholder
-- caching, you can set your favorite caching system, see below
-- manipulate, _optional_ callback returns the image before setting to your imageview, here you can tweak the image
-- onComplete, _optional_ callback returns when the image has been applied to the imageview
+- `url`, _optional_ string with current remote image url
+- `placeholder`, _optional_ bitmap placeholder
+- `placeholderResource`, _optional_ resource placeholder
+- `caching`, you can set your favorite caching system, see below
+- `manipulate`, _optional_ callback returns the image before setting to your imageview, here you can tweak the image
+- `onComplete`, _optional_ callback returns when the image has been applied to the imageview
 
 
 ## Caching
 `Parrot` provide an easy way to handle images caching:
 
-- NetOnly, _default_ option, force always reloading from net
-- NetThenDisk, download once and use local version
+- `NetOnly`, _default_ option, force always reloading from net
+- `NetThenDisk`, download once and use local version
 
 ## Examples
 
