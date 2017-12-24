@@ -14,7 +14,7 @@ maven { url 'https://jitpack.io' }
 then add this
 
 ```
-compile 'com.github.matteocrippa:Parrot:0.0.2'
+compile 'com.github.matteocrippa:Parrot:0.0.3'
 ```
 
 # Usage
@@ -26,12 +26,11 @@ Parrot(context)
 
 then provides you a simple function to tame all your needs:
 
-`ImageView.loadImage`
+`ImageView.load`
 
 This function has the following parameters:
 - `url`, _optional_ string with current remote image url
-- `placeholder`, _optional_ bitmap placeholder
-- `placeholderResource`, _optional_ resource placeholder
+- `placeholder`, _optional_ bitmap placeholder or resource Id
 - `caching`, you can set your favorite caching system, see below
 - `manipulate`, _optional_ callback returns the image before setting to your imageview, here you can tweak the image
 - `onComplete`, _optional_ callback returns when the image has been applied to the imageview

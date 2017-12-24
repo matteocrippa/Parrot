@@ -14,7 +14,15 @@ import java.net.URL
  * Created by Matteo Crippa on 23/12/2017.
  */
 
-fun ImageView.loadImage(url: String?, placeholder: Bitmap? = null, placeholderResource: Int? = null, caching: Parrot.Caching = Parrot.Caching.NetThenDisk, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onComplete: ((completed: Boolean) -> Unit)? = null) {
+fun ImageView.load(url: String?, placeholder: Bitmap? = null, caching: Parrot.Caching = Parrot.Caching.NetThenDisk, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onComplete: ((completed: Boolean) -> Unit)? = null) {
+    this.loadImage(url, placeholder = placeholder, caching = caching, manipulate = manipulate, onComplete = onComplete)
+}
+
+fun ImageView.load(url: String?, placeholder: Int? = null, caching: Parrot.Caching = Parrot.Caching.NetThenDisk, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onComplete: ((completed: Boolean) -> Unit)? = null) {
+    this.loadImage(url, placeholderResource = placeholder, caching = caching, manipulate = manipulate, onComplete = onComplete)
+}
+
+private fun ImageView.loadImage(url: String?, placeholder: Bitmap? = null, placeholderResource: Int? = null, caching: Parrot.Caching = Parrot.Caching.NetThenDisk, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onComplete: ((completed: Boolean) -> Unit)? = null) {
 
     // if provided set bitmap placeholder
     if (placeholder != null) this.imageBitmap = placeholder
