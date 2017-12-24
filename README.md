@@ -18,7 +18,7 @@ maven { url 'https://jitpack.io' }
 then add this
 
 ```
-compile 'com.github.matteocrippa:Parrot:0.0.4'
+compile 'com.github.matteocrippa:Parrot:0.0.6'
 ```
 
 # Usage
@@ -37,6 +37,7 @@ This function has the following parameters:
 - `placeholder`, _optional_ bitmap placeholder or resource Id
 - `caching`, you can set your favorite caching system, see below
 - `manipulate`, _optional_ callback returns the image before setting to your imageview, here you can tweak the image
+- `onPlaceholder`, _optional_ callback returns if a placeholder has been set
 - `onComplete`, _optional_ callback returns when the image has been applied to the imageview
 
 
