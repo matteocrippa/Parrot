@@ -14,7 +14,7 @@ maven { url 'https://jitpack.io' }
 then add this
 
 ```
-compile 'com.github.matteocrippa:Parrot:0.0.3'
+compile 'com.github.matteocrippa:Parrot:0.0.4'
 ```
 
 # Usage
