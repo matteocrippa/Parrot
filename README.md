@@ -1,8 +1,11 @@
 # Parrot
 [ ![Download](https://api.bintray.com/packages/matteocrippa/Parrot/Parrot/images/download.svg) ](https://bintray.com/matteocrippa/Parrot/Parrot/_latestVersion)
+
+
 A kotlin extension to load easily remote images in your `ImageView`.
 
 ![parrot](https://github.com/matteocrippa/parrot/blob/master/.github/parrot.png?raw=true)
+
 
 # Install
 
