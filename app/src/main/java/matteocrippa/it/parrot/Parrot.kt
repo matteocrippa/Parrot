@@ -6,7 +6,7 @@ import com.github.kittinunf.fuse.core.Fuse
 /**
  * Created by matteocrippa on 23/12/2017.
  */
-class Parrot(private val context: Context) {
+class Parrot(context: Context) {
     enum class Caching {
         NetOnly, NetThenDisk
     }
