@@ -13,7 +13,7 @@ import java.net.URL
  * Created by Matteo Crippa on 23/12/2017.
  */
 
-fun ImageView.load(url: String?, placeholder: Any? = null, caching: Parrot.Caching = Parrot.Caching.NetThenDisk, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onPlaceholder: ((completed: Boolean) -> Unit)? = null, onComplete: ((completed: Boolean) -> Unit)? = null) {
+fun ImageView.load(url: String?, placeholder: Any? = null, caching: Parrot.Caching = Parrot.Caching.NetThenDisk, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onPlaceholder: ((completed: Boolean) -> Unit)? = null, onComplete: ((error: Exception?) -> Unit)? = null) {
 
     if(placeholder == null) {
         this.loadImage(url, caching = caching, manipulate = manipulate, onComplete = onComplete)
