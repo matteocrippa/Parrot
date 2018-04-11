@@ -3,7 +3,6 @@ package matteocrippa.it.parrot
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.widget.ImageView
-import com.github.kittinunf.fuse.core.Config
 import com.github.kittinunf.fuse.core.Fuse
 import com.github.kittinunf.fuse.core.fetch.get
 import org.jetbrains.anko.imageBitmap
@@ -27,7 +26,7 @@ fun ImageView.load(url: String?, placeholder: Any? = null, caching: Parrot.Cachi
     }
 }
 
-private fun ImageView.loadImage(url: String?, placeholder: Bitmap? = null, placeholderResource: Int? = null, caching: Parrot.Caching = Parrot.Caching.NetThenDisk, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onPlaceholder: ((completed: Boolean) -> Unit)? = null, onComplete: ((completed: Boolean) -> Unit)? = null) {
+private fun ImageView.loadImage(url: String?, placeholder: Bitmap? = null, placeholderResource: Int? = null, caching: Parrot.Caching = Parrot.Caching.NetThenDisk, manipulate: ((data: Bitmap?) -> Bitmap?)? = null, onPlaceholder: ((completed: Boolean) -> Unit)? = null, onComplete: ((error: Exception?) -> Unit)? = null) {
 
     // placehoder set flag
     var placeholderSet = false
@@ -80,14 +79,14 @@ private fun ImageView.loadImage(url: String?, placeholder: Bitmap? = null, place
 
             // return has completed
             if (onComplete != null) {
-                onComplete(true)
+                onComplete(null)
             }
 
-        }, failure = { _ ->
+        }, failure = { error ->
             // do nothing and keep placeholder
             // return has not completed
             if (onComplete != null) {
-                onComplete(false)
+                onComplete(error)
             }
         })
 
